@@ -1,13 +1,16 @@
-package com.hao.springbootdemo.test.demo1; /**
- * @author xu.liang
- * @since 2022/3/23 17:34
- */
+package com.hao.springbootdemo.test.demo1;
+
 import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Scanner;
 
-
+/**
+ * FinalShell离线激活码
+ *
+ * @author xu.liang
+ * @since 2022/3/23 17:34
+ */
 public class FinalShell {
     public static void main(String[] args) throws NoSuchAlgorithmException, IOException {
         System.out.print("请输入FinalShell的离线机器码：");
@@ -19,7 +22,7 @@ public class FinalShell {
     public static void generateKey(String hardwareId) throws NoSuchAlgorithmException {
         String proKey = transform(61305 + hardwareId + 8552);
         String pfKey = transform(2356 + hardwareId + 13593);
-        System.out.println("请将此行复制到离线激活中："+proKey);
+        System.out.println("请将此行复制到离线激活中：" + proKey);
         System.out.println(pfKey);
     }
 

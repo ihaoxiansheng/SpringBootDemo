@@ -45,7 +45,7 @@ public class SpringBootDemoApplication {
 
     @EnableAsync
     @Configuration
-    class TaskPoolConfig {
+    public static class TaskPoolConfig {
         @Bean("taskExecutor")
         public Executor taskExecutor() {
             ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();

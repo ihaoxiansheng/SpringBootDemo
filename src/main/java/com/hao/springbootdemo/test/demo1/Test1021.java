@@ -21,9 +21,6 @@ public class Test1021 {
             System.out.println(key + ": " + Collections.frequency(list, key));
         }
 
-
-
-
     }
 
 

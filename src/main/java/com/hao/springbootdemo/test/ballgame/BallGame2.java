@@ -12,14 +12,24 @@ public class BallGame2 extends JFrame {
     Image ball = Toolkit.getDefaultToolkit().getImage("images/ball.png");
     Image desk = Toolkit.getDefaultToolkit().getImage("images/desk.jpg");
 
-    // 小球的横坐标
+    /**
+     * 小球的横坐标
+     */
     double x = 100;
-    // 小球的纵坐标
+
+    /**
+     * 小球的纵坐标
+     */
     double y = 100;
-    // 弧度,此处就是60度
+
+    /**
+     * 弧度，此处就是60度
+     */
     double degree = 3.14 / 3;
 
-    // 画窗口的方法
+    /**
+     * 画窗口的方法：加载小球与桌面
+     */
     @Override
     public void paint(Graphics g) {
         System.out.println("窗口被画了一次! ");
@@ -31,18 +41,20 @@ public class BallGame2 extends JFrame {
 
         // 500是窗口高度, 40是桌子边框, 30是球直径, 最后一个40是标题栏的高度
         if (y > 500 - 40 - 30 || y < 40 + 40) {
-            //小球触碰上下边界时,只改变纵坐标方向
+            // 小球触碰上下边界时，只改变纵坐标方向
             degree = -degree;
         }
 
         if (x < 40 || x > 856 - 40 - 30) {
-            // 小球触碰左右边界时,只改变横坐标方向
+            // 小球触碰左右边界时，只改变横坐标方向
             degree = 3.14 - degree;
         }
 
     }
 
-    // 窗口加载
+    /**
+     * 窗口加载
+     */
     void launchFrame() {
         // 窗口大小
         setSize(856, 500);
@@ -63,8 +75,7 @@ public class BallGame2 extends JFrame {
         }
     }
 
-    // main方法是程序执行的入口
-    public static void main(String[] strgs) {
+    public static void main(String[] args) {
         BallGame2 ballgame = new BallGame2();
         ballgame.launchFrame();
     }

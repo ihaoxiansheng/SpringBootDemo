@@ -27,7 +27,8 @@ public class Test0922 {
 
         Gson gson = new Gson();
         String str = gson.toJson(new Object());
-        String str1 = gson.toJson(new Object(){});
+        String str1 = gson.toJson(new Object() {
+        });
         System.out.println("str = " + str);
         System.out.println("str1 = " + str1);
 

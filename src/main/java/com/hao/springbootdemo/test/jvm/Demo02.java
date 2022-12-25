@@ -45,9 +45,9 @@ public class Demo02 {
         // 获取操作系统相关信息
         System.out.println("osm.getArch(): " + osm.getArch());
         System.out.println("osm.getAvailableProcessors(): " + osm.getAvailableProcessors());
-        System.out.println("osm.getCommittedVirtualMemorySize() "+osm.getCommittedVirtualMemorySize());
+        System.out.println("osm.getCommittedVirtualMemorySize() " + osm.getCommittedVirtualMemorySize());
         System.out.println("osm.getName():" + osm.getName());
-        System.out.println("osm.getProcessCpuTime():"+osm.getProcessCpuTime());
+        System.out.println("osm.getProcessCpuTime():" + osm.getProcessCpuTime());
         System.out.println("osm.getVersion(): " + osm.getVersion());
         // 获取整个虚拟机内存使用情况
         System.out.println("=======================MemoryMXBean============================ ");

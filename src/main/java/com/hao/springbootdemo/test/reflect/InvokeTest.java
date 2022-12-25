@@ -38,7 +38,7 @@ public class InvokeTest {
             Class<?> c = Class.forName("java.util.HashSet");
             Object o = c.newInstance();
             Method[] methods = c.getDeclaredMethods();
-            for(Method method : methods){
+            for (Method method : methods) {
                 System.out.println("method====" + method);
             }
             Method m1 = c.getMethod("add", Object.class);

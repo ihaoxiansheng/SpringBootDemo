@@ -58,17 +58,17 @@ public class DebounceTask {
 
 
     // 测试1
-    public static void main(String[] args){
+    public static void main(String[] args) {
         //构建对象，1000L: 1秒执行-->1秒内没有请求，在执行防抖操作
         DebounceTask task = DebounceTask.build(new Runnable() {
             @Override
             public void run() {
-                System.out.println("防抖操作执行了:do task: "+System.currentTimeMillis());
+                System.out.println("防抖操作执行了:do task: " + System.currentTimeMillis());
             }
-        },1000L);
+        }, 1000L);
         long delay = 100;
-        while (true){
-            System.out.println("请求执行:call task: "+System.currentTimeMillis());
+        while (true) {
+            System.out.println("请求执行:call task: " + System.currentTimeMillis());
             task.timerRun();
             try {
                 //休眠1毫秒在请求

@@ -55,7 +55,6 @@ public class Test1212 {
     }
 
 
-
     private static void copySelf() {
         int[] ids = {1, 2, 3, 4, 5};
         System.out.println(Arrays.toString(ids));// [1, 2, 3, 4, 5]

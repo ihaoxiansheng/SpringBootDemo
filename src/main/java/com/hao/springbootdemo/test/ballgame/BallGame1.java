@@ -8,29 +8,44 @@ import java.awt.*;
  * @since 2022/10/19 10:50
  */
 public class BallGame1 extends JFrame {
-    //添加小球和桌面图片的路径
+
+    /**
+     * 添加小球和桌面图片的路径
+     */
     Image ball = Toolkit.getDefaultToolkit().getImage("images/ball.png");
     Image desk = Toolkit.getDefaultToolkit().getImage("images/desk.jpg");
 
-    //指定小球的初始位置
-    double x = 100; //小球的横坐标
-    double y = 100; //小球的纵坐标
-    boolean right = true; //判断小球的方向
+    /**
+     * 小球的横坐标
+     */
+    double x = 100;
 
-    //画窗口的方法：加载小球与桌面
+    /**
+     * 小球的纵坐标
+     */
+    double y = 100;
+
+    /**
+     * 判断小球的方向
+     */
+    boolean right = true;
+
+    /**
+     * 画窗口的方法：加载小球与桌面
+     */
     @Override
     public void paint(Graphics g) {
         System.out.println("窗口被画了一次！");
         g.drawImage(desk, 0, 0, null);
         g.drawImage(ball, (int) x, (int) y, null);
-//改变小球坐标
+        // 改变小球坐标
         if (right) {
             x = x + 10;
         } else {
             x = x - 10;
         }
-//边界检测
-//856 是窗口宽度，40 是桌子边框的宽度，30 是小球的直径
+        // 边界检测
+        // 856是窗口宽度，40是桌子边框的宽度，30是小球的直径
         if (x > 856 - 40 - 30) {
             right = false;
         }
@@ -40,23 +55,26 @@ public class BallGame1 extends JFrame {
 
     }
 
-    //窗口加载
+    /**
+     * 窗口加载
+     */
     void launchFrame() {
         setSize(856, 500);
         setLocation(50, 50);
         setVisible(true);
-//重画窗口,每秒画 25 次
+        // 重画窗口，每秒画25次
         while (true) {
-            repaint(); //调用 repaint 方法，窗口即可重画
+            // 调用 repaint 方法，窗口即可重画
+            repaint();
             try {
-                Thread.sleep(40); //40ms, 1 秒=1000 毫秒. 大约一秒画25 次窗口
+                // 40ms, 1秒=1000毫秒，大约一秒画25次窗口
+                Thread.sleep(40);
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
     }
 
-    //main 方法是程序执行的入口
     public static void main(String[] args) {
         System.out.println(" 我是尚学堂高淇，这个游戏项目让大家体验编程的快感，"
                 + "寓教于乐！");

@@ -34,17 +34,26 @@ package com.hao.springbootdemo.test.demo;
  * @since 2022/9/24 14:27
  */
 class Father {
-    // 静态属性
+    /**
+     * 静态属性
+     */
     public static String str1 = "父类中的静态属性";
-    //普通属性
+
+    /**
+     * 普通属性
+     */
     public String str2 = "父类中的普通属性";
 
-    // 无参构造方法
+    /**
+     * 无参构造方法
+     */
     public Father() {
         System.out.println("父类的无参构造方法");
     }
 
-    // 有参构造方法
+    /**
+     * 有参构造方法
+     */
     public Father(int a) {
         System.err.println("父类的有参构造方法" + a);
     }
@@ -68,12 +77,16 @@ class Son extends Father {
     // 子类中的普通属性
     public String str2 = "子类中的普通属性";
 
-    // 子类中的无参构造方法
+    /**
+     * 子类中的无参构造方法
+     */
     public Son() {
         System.out.println("子类中的无参构造方法");
     }
 
-    // 子类中的有参构造方法
+    /**
+     * 子类中的有参构造方法
+     */
     public Son(int a) {
         //super(a);
         System.out.println("子类中的有参构造方法" + a);

@@ -3,7 +3,6 @@ package com.hao.springbootdemo.test.demo1;
 
 import org.junit.Test;
 
-import java.util.Arrays;
 import java.util.concurrent.*;
 
 /**
@@ -52,29 +51,6 @@ public class Test1213Test {
             e.printStackTrace();
         }
         return "ok";
-    }
-
-    /**
-     * 将以下划线分隔的数据库字段转换为驼峰风格的字符串
-     */
-    @Test
-    public void fieldToCamelCasing() {
-        String columnName = "str";
-        // String columnName = "str_split_Name";
-        if (!columnName.contains("_")) {
-            System.out.println("columnName = " + columnName);
-            return;
-        }
-        String[] array = columnName.split("_");
-        System.out.println("array = " + Arrays.toString(array));
-        StringBuffer sb = new StringBuffer();
-        for (String cn : array) {
-            cn = cn.toLowerCase();
-            System.out.println("cn.substring(0, 1).toUpperCase() = " + cn.substring(0, 1).toUpperCase());
-            System.out.println("cn.substring(1) = " + cn.substring(1));
-            sb.append(cn.substring(0, 1).toUpperCase()).append(cn.substring(1));
-        }
-        System.out.println("sb.toString() = " + sb.toString());
     }
 
 }

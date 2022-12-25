@@ -12,15 +12,15 @@ public class Test1208 {
             return (T) integer;
         } else if (v2 == 1) {
             Long aLong = Long.valueOf(v1);
-            return (T)aLong;
+            return (T) aLong;
         } else if (v2 == 2) {
             Float aFloat = Float.valueOf(v1);
-            return (T)aFloat;
+            return (T) aFloat;
         } else if (v2 == 3) {
             Double aDouble = Double.valueOf(v1);
-            return (T)aDouble;
+            return (T) aDouble;
         }
-        return (T)v1;
+        return (T) v1;
     }
 
     public static void main(String[] args) {
@@ -34,7 +34,7 @@ public class Test1208 {
 
         Object o1 = strToOther("111", 1);
 
-        Long a1 =  strToOther("111", 1);
+        Long a1 = strToOther("111", 1);
         longa(strToOther("111", 1));
 
         System.out.println("" + (o1 instanceof Long));

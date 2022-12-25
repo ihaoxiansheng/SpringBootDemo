@@ -25,17 +25,21 @@ class TestB {
 }
 
 class TestExecute1 {
-    // 静态属性
+    /**
+     * 静态属性
+     */
     public static TestA a = new TestA();
 
     // 静态代码块
     static {
         System.out.println("静态初始代码块");
-        //不能调用未定义的属性，此处会报错
-        //System.out.println(b);
+        // 不能调用未定义的属性，此处会报错
+        // System.out.println(b);
     }
 
-    // 静态属性
+    /**
+     * 静态属性
+     */
     public static TestB b = new TestB();
 
     public static void main(String[] args) {

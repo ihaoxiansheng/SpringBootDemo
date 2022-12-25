@@ -21,7 +21,7 @@ public class Test01 {
         System.out.println("array = " + array);
 
         String str = "_copy";
-        str += str ;
+        str += str;
         System.out.println(str);
 
         System.out.println(Collections.nCopies(3, "Apple"));
@@ -34,7 +34,7 @@ public class Test01 {
         System.out.println("index = " + index);
         String substring = a.substring(index);
         System.out.println("substring = " + substring);
-        int index1 = substring.indexOf("y")+1;
+        int index1 = substring.indexOf("y") + 1;
         int i = 0;
         String substring1 = substring.substring(index1);
         if ("".equals(substring1)) {
