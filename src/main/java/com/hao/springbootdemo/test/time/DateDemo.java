@@ -4,7 +4,9 @@ import org.apache.commons.lang3.time.DateFormatUtils;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
@@ -62,6 +64,13 @@ public class DateDemo {
         DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         String format1 = localDateTime1.format(formatter1);
         System.out.println("format1 = " + format1);
+
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        LocalDateTime todayStart = LocalDateTime.of(LocalDate.now(), LocalTime.MIN);
+        LocalDateTime todayEnd = LocalDateTime.of(LocalDate.now(), LocalTime.MAX);
+        System.out.println("当前时间，当天的开始时间(日期+时分秒)："+ todayStart.format(dtf));
+        System.out.println("当前时间，当天的结束时间(日期+时分秒)："+ todayEnd.format(dtf));
+        System.out.println("当前的时间(只有日期)"+LocalDate.now());
 
     }
 }
