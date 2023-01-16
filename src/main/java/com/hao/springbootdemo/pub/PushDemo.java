@@ -11,6 +11,7 @@ public class PushDemo {
 
         System.out.println("args = " + args);
         System.out.println("args = " + args);
+        System.out.println("args = " + args);
 
     }
 
