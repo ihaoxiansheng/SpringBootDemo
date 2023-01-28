@@ -11,6 +11,7 @@ public class PushDemo {
 
         System.out.println("h");
         System.out.println("e");
+        System.out.println("l");
 
     }
 
