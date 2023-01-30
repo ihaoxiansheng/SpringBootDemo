@@ -13,6 +13,7 @@ public class PushDemo {
         System.out.println("e");
         System.out.println("l");
         System.out.println("l");
+        System.out.println("o");
 
     }
 
