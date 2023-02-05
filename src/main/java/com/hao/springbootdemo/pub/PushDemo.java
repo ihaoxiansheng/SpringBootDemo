@@ -22,6 +22,7 @@ public class PushDemo {
         System.out.println("d");
 
         System.out.println("this");
+        System.out.println("is");
 
     }
 
