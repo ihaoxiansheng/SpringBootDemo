@@ -1,0 +1,3 @@
+mybatis-plus:
+    # 支持统配符 * 或者 ; 分割
+    typeEnumsPackage: com.baomidou.springboot.entity.enum
