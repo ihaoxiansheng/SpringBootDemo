@@ -15,6 +15,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Idea开源支持：https://jb.gg/OpenSourceSupport.
+ *
  * @author xu.liang
  * @since 2022/9/23 09:42
  */
@@ -37,6 +39,7 @@ public class TestController {
 
     /**
      * 测试全局异常
+     *
      * @see GlobalExceptionHandler
      */
     @GetMapping("/add")
