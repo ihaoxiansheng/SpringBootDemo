@@ -1,11 +1,19 @@
 package com.hao.springbootdemo.controller;
 
+import cn.hutool.core.io.IoUtil;
+import cn.hutool.core.io.file.FileReader;
+// import cn.hutool.core.io.resource.ClassPathResource;
+import cn.hutool.core.io.resource.InputStreamResource;
+import cn.hutool.core.io.resource.Resource;
+import cn.hutool.core.util.CharsetUtil;
 import cn.hutool.json.JSONUtil;
 import com.hao.springbootdemo.util.exception.GlobalException;
 import io.swagger.annotations.Api;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -28,7 +36,7 @@ import java.util.Map;
 public class FileController {
 
     /**
-     * @see <a href="https://www.yuque.com/chuinixiongkou/gc-starter/ubzm5e">...</a>
+     * @see <a href="https://www.yuque.com/chuinixiongkou/gc-starter/ubzm5e"></a>
      * 返回类型必须为void
      */
     @PostMapping("/download")
@@ -104,7 +112,7 @@ public class FileController {
         OutputStream os = null;
         try {
             // 需要该目录下存在该文件
-            String filePath = "/Users/liang/temp/note/" + fileName + ".txt";
+            String filePath = "/Users/liang/Desktop/" + fileName + ".txt";
             log.info("下载文件路径：" + filePath);
 
             String name = URLEncoder.encode(fileName + ".txt", "utf-8").replaceAll("\\+", "%20");
@@ -118,9 +126,7 @@ public class FileController {
             file = new File(filePath);
             is = new FileInputStream(file);
             os = response.getOutputStream();
-            // 或者用下一行代码
             os.write(fileContent.getBytes(StandardCharsets.UTF_8));
-            // IOUtils.copy(is, os);
 
         } catch (Exception e) {
             log.error("下载vue文件异常：", e);
@@ -147,7 +153,8 @@ public class FileController {
             }
             // 判断是否Json字符串
             if (!JSONUtil.isJson(data)) {
-                throw new GlobalException("数据格式异常，请检查重试");
+                // throw new GlobalException("数据格式异常，请检查重试");
+                log.error("数据格式异常，请检查重试");
             }
         } catch (IOException e) {
             log.error("上传失败", e);
@@ -155,9 +162,55 @@ public class FileController {
         } finally {
             IOUtils.closeQuietly(reader);
         }
-        Map<String, String> map = new HashMap<>();
+        Map<String, String> map = new HashMap<>(16);
         map.put("fileContent", fileContent.toString());
         map.put("fileName", file.getOriginalFilename());
+        return map;
+    }
+
+    @PostMapping("/upload2")
+    @SneakyThrows
+    public Map<String, String> upload2(@RequestPart MultipartFile file) {
+        InputStreamResource inputStreamResource = new InputStreamResource(file.getInputStream());
+        String data = inputStreamResource.readUtf8Str();
+
+        // 判断是否Json字符串
+        if (!JSONUtil.isJson(data)) {
+            // throw new GlobalException("数据格式异常，请检查重试");
+            log.error("数据格式异常，请检查重试");
+        }
+        Map<String, String> map = new HashMap<>(16);
+        map.put("fileContent", data);
+        map.put("fileName", file.getOriginalFilename());
+        return map;
+    }
+
+    @PostMapping("/readResourceFile")
+    @SneakyThrows
+    public Map<String, String> readResourceFile() {
+        // spring工具包
+        ClassPathResource classPathResource = new ClassPathResource("vue模板.vue");
+        InputStream is = classPathResource.getInputStream();
+
+        // hutool工具包 import cn.hutool.core.io.resource.ClassPathResource;
+        // ClassPathResource classPathResource = new ClassPathResource("vue模板.vue");
+        // InputStream is = classPathResource.getStream();
+
+        // FileInputStream is = new FileInputStream("src/main/resources/vue模板.vue");
+        InputStreamResource inputStreamResource = new InputStreamResource(is);
+        String data = inputStreamResource.readUtf8Str();
+
+        // FileOutputStream fos = new FileOutputStream("src/main/resources/vue模板1.vue");
+        // IOUtils.copy(is, fos);
+        // fos.write(data.getBytes(StandardCharsets.UTF_8));
+
+        // 判断是否Json字符串
+        if (!JSONUtil.isJson(data)) {
+            // throw new GlobalException("数据格式异常，请检查重试");
+            log.error("数据格式异常，请检查重试");
+        }
+        Map<String, String> map = new HashMap<>(16);
+        map.put("fileContent", data);
         return map;
     }
 
