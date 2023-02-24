@@ -1,0 +1,6 @@
+{
+  "id": "1",
+  "type": "startEvent",
+  "startEvent": "begin",
+  "startInfo": "hello world"
+}
