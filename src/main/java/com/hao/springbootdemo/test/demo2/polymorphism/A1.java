@@ -1,4 +1,4 @@
-package com.hao.springbootdemo.test.demo2.多态;
+package com.hao.springbootdemo.test.demo2.polymorphism;
 
 import lombok.Data;
 

@@ -1,7 +1,5 @@
-package com.hao.springbootdemo.test.demo2.多态;
+package com.hao.springbootdemo.test.demo2.polymorphism;
 
-import cn.hutool.json.JSONUtil;
-import com.alibaba.fastjson.JSONObject;
 import com.google.gson.Gson;
 import lombok.Data;
 
