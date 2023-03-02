@@ -25,6 +25,8 @@ public class Test1012 {
                 iterator.remove();
             }
         }
+
+        // ConcurrentModificationException
         strings.forEach(val -> {
             strings.remove("4");
             strings.add("3");
