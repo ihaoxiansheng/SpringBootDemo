@@ -15,8 +15,9 @@ public class Demo1222Test {
             int a = 1 / 0;
             System.out.println("11111");
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             System.out.println("22222");
+            throw new RuntimeException(e);
         } finally {
             System.out.println("33333");
         }
