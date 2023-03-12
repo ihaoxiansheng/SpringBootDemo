@@ -1,7 +1,7 @@
 # !/bin/bash
 
-# 如果当前目录下有切仅有一个jar包，则无需修改下方APP_NAME
-# 否则，请额外复制脚本，并在APP_NAME处指定当前目录下的综调模块jar包名称，
+# 如果当前目录下有且仅有一个jar包，则无需修改下方APP_NAME
+# 否则，请额外复制脚本，并在APP_NAME处指定当前目录下的jar包名称
 # 由于环境限制，请确保当前目录下仅有一个jar包，且linux主机内没有其他同名且同虚拟机配置的jar包正在运行
 APP_NAME=`find *.jar |awk '{print $1}'`
 APP_PATH=`pwd`
