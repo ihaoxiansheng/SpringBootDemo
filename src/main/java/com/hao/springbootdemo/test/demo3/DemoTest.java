@@ -55,6 +55,7 @@ public class DemoTest {
         HashMap<String, String> map = new HashMap<>();
         map.put("user_name", "name");
         map.put("teacher_name", "id");
+        // map的key下划线转驼峰
         Map<String, String> map1 = MapUtil.toCamelCaseMap(map);
         System.out.println("map1 = " + map1);
 
