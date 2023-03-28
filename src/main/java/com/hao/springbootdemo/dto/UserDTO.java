@@ -1,6 +1,7 @@
 package com.hao.springbootdemo.dto;
 
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -10,6 +11,7 @@ import javax.validation.constraints.NotNull;
  * @since 2023/3/11 23:00
  */
 @Data
+@Accessors(chain = true)
 public class UserDTO {
 
     @NotNull(message = "id不能为空")
