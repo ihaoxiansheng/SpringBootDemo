@@ -6,10 +6,9 @@ import org.apache.commons.lang3.Validate;
 import org.springframework.validation.annotation.Validated;
 import javax.validation.Valid;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * @author xu.liang
@@ -31,6 +30,22 @@ public class DemoTest {
         userDTO.setPhone("18888888888");
         userDTO.setAddress("北京");
         userDTO.setDesc("");
+
+        List<UserDTO> userList = new ArrayList<>();
+        userList.add(userDTO);
+        userList.add(userDTO);
+
+        // 要想此处的map编译通过UserDTO对象需加注解 @Accessors(chain = true) ，不加注解也可用peek代替
+        List<UserDTO> haha = userList.stream().map(a -> a.setDesc("haha")).collect(Collectors.toList());
+        System.out.println("haha = " + haha);
+
+        List<String> streamList = Stream.of("one", "two", "three", "four")
+                .filter(e -> e.length() > 3)
+                .peek(e -> System.out.println("Filtered value: " + e))
+                .map(String::toUpperCase)
+                .peek(e -> System.out.println("Mapped value: " + e))
+                .collect(Collectors.toList());
+        System.out.println("streamList = " + streamList);
 
         // String test = null;
         // String isNull = Validate.notNull(test, "xxx cannot be null");
@@ -56,8 +71,13 @@ public class DemoTest {
         map.put("user_name", "name");
         map.put("teacher_name", "id");
         // map的key下划线转驼峰
-        Map<String, String> map1 = MapUtil.toCamelCaseMap(map);
-        System.out.println("map1 = " + map1);
+        Map<String, String> mapTo = MapUtil.toCamelCaseMap(map);
+        System.out.println("mapTo = " + mapTo);
+
+
+
+
+
 
     }
 
