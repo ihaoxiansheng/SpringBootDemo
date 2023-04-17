@@ -1,5 +1,9 @@
 package com.hao.springbootdemo.test.demo4;
 
+import com.hao.springbootdemo.dto.UserDTO;
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -30,6 +34,30 @@ public class runAsyncTest {
 
         List<String> list = new ArrayList<>();
 
+        Result result = new Result("12312311", "21231231");
+        String createTable = result.createTable;
+        String mapStr = result.mapStr;
+        System.out.println("createTable = " + createTable);
+        System.out.println("mapStr = " + mapStr);
+        String substring = result.createTable.substring(0, 3);
+        System.out.println("substring = " + substring);
+        String a = "123";
+        // Cannot assign a value to final variable 'createTable'
+        result.createTable = a;
+        System.out.println("result.createTable = " + result.createTable);
 
+
+
+    }
+
+
+    private static class Result {
+        public String createTable;
+        public final String mapStr;
+
+        public Result(String createTable, String mapStr) {
+            this.createTable = createTable;
+            this.mapStr = mapStr;
+        }
     }
 }
