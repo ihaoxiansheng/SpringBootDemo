@@ -49,7 +49,7 @@ public class BaseEntity implements Serializable {
     private Date updateDate;
 
     @TableLogic(delval = "1", value = "0")
-    @ApiModelProperty("删除标识(0：正常，1：删除)")
+    @ApiModelProperty("删除标识，0：正常；1：删除")
     private Integer delFlag = 0;
 
 }
