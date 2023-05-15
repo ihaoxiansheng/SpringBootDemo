@@ -4,10 +4,7 @@ import org.apache.commons.lang3.time.DateFormatUtils;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.ZoneId;
+import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Locale;
@@ -68,9 +65,38 @@ public class DateDemo {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         LocalDateTime todayStart = LocalDateTime.of(LocalDate.now(), LocalTime.MIN);
         LocalDateTime todayEnd = LocalDateTime.of(LocalDate.now(), LocalTime.MAX);
-        System.out.println("当前时间，当天的开始时间(日期+时分秒)："+ todayStart.format(dtf));
-        System.out.println("当前时间，当天的结束时间(日期+时分秒)："+ todayEnd.format(dtf));
-        System.out.println("当前的时间(只有日期)"+LocalDate.now());
+        System.out.println("当前时间，当天的开始时间(日期+时分秒)：" + todayStart.format(dtf));
+        System.out.println("当前时间，当天的结束时间(日期+时分秒)：" + todayEnd.format(dtf));
+        System.out.println("当前的时间(只有日期)" + LocalDate.now());
 
+
+        DateTimeFormatter formatter = DateTimeFormatter.BASIC_ISO_DATE;
+        String formattedDate = formatter.format(LocalDate.now());
+        String formattedZonedDate = formatter.format(ZonedDateTime.now());
+        System.out.println("LocalDate          : " + formattedDate);
+        System.out.println("formattedZonedDate : " + formattedZonedDate);
+        LocalDateTime dateTime = LocalDateTime.now();
+        // 20180303
+        String strDate1 = dateTime.format(DateTimeFormatter.BASIC_ISO_DATE);
+        // 2013-03-03
+        String strDate2 = dateTime.format(DateTimeFormatter.ISO_LOCAL_DATE);
+        // 当前时间
+        String strDate3 = dateTime.format(DateTimeFormatter.ISO_LOCAL_TIME);
+        // 2018-03-03
+        String strDate4 = dateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        // 今天是：2018年 三月 03日 星期六
+        String strDate5 = dateTime.format(DateTimeFormatter.ofPattern("今天是：YYYY年 MMMM dd日 E", Locale.CHINESE));
+        System.out.println(strDate1);
+        System.out.println(strDate2);
+        System.out.println(strDate3);
+        System.out.println(strDate4);
+        System.out.println(strDate5);
+        // 将一个字符串解析成一个日期对象
+        String strDate6 = "2018-03-03";
+        String strDate7 = "2017-03-03 15:30:05";
+        LocalDate date = LocalDate.parse(strDate6, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        LocalDateTime dateTime1 = LocalDateTime.parse(strDate7, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        System.out.println(date);
+        System.out.println(dateTime1);
     }
 }

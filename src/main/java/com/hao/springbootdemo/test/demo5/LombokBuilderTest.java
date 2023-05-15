@@ -1,8 +1,6 @@
 package com.hao.springbootdemo.test.demo5;
 
-import com.hao.springbootdemo.dto.User1DTO;
 import com.hao.springbootdemo.entity.User1;
-import com.hao.springbootdemo.entity.User2;
 
 /**
  * Builder(toBuilder=true)
