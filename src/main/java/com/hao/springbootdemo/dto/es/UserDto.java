@@ -1,12 +1,7 @@
 package com.hao.springbootdemo.dto.es;
 
-//import com.gccloud.sample.elasticsearch.entity.OrgEntity;
-//import com.gccloud.sample.elasticsearch.entity.RoleEntity;
-//import com.gccloud.starter.common.validator.group.Insert;
-//import com.gccloud.starter.common.validator.group.Update;
-
-import com.gccloud.idc.model.common.entity.es.OrgEntity;
-import com.gccloud.idc.model.common.entity.es.RoleEntity;
+import com.hao.springbootdemo.entity.es.OrgEntity;
+import com.hao.springbootdemo.entity.es.RoleEntity;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
