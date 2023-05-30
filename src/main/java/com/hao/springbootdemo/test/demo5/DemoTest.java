@@ -2,11 +2,10 @@ package com.hao.springbootdemo.test.demo5;
 
 import lombok.SneakyThrows;
 
+import java.text.Collator;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * @author xu.liang
@@ -15,6 +14,23 @@ import java.util.Set;
 public class DemoTest {
 
     public static void main(String[] args) {
+
+        String aa = "1,2,3,4,5";
+        String qq = "1";
+
+        String[] split = qq.split(",");
+        for (String s : split) {
+            System.out.println("s = " + s);
+        }
+
+        // 姓名以名称排序
+        List<String> nameList = new ArrayList<>();
+        nameList.add("张三");
+        nameList.add("李四");
+        List<String> collect = nameList.stream()
+                .sorted((o1, o2) -> Collator.getInstance(Locale.CHINA).compare(o1, o2))
+                .collect(Collectors.toList());
+        System.out.println("collect = " + collect);
 
 
         test1("11");
@@ -26,7 +42,7 @@ public class DemoTest {
         System.out.println("testSet = " + testSet);
         testSet = "test";
         System.out.println("testSet = " + testSet);
-        
+
 
 
         Map<String, String> map = new HashMap<>();
