@@ -6,73 +6,27 @@ package com.hao.springbootdemo.constant;
  * @author xu.liang
  * @since 2022/3/30 11:30
  */
-public interface GlobalConstant {
+public class GlobalConstant {
 
     /**
-     * @Description:
-     * @Author yang.hw
-     * @Date 2022/3/28 19:23
+     * Status
      */
-    interface CurrentUse {
-        /**
-         * 不在用
-         */
-        Integer NO = 1;
-        /**
-         * 在用
-         */
-        Integer YES = 0;
-    }
-
-    interface Status {
-        /**
-         * 设计中
-         */
-        Integer DESIGN_ING = 1;
-        /**
-         * 已发布
-         */
-        Integer PUBLISHED = 2;
-        /**
-         * 已下线
-         */
-        Integer OFF_LINE = 3;
-        /**
-         * 待审核
-         */
-        Integer TO_AUDIT = 4;
-        /**
-         * 审核失败
-         */
-        Integer AUDIT_FAIL = 5;
-    }
+    public static final Integer DESIGN_ING = 1; // 设计中
+    public static final Integer PUBLISHED = 2; // 已发布
+    public static final Integer OFF_LINE = 3; // 已下线
+    public static final Integer TO_AUDIT = 4; // 待审核
+    public static final Integer AUDIT_FAIL = 5; // 审核失败
 
     /**
      * 是否共有
      */
-    interface IsPrivate {
-        /**
-         * 私有
-         */
-        Integer NO = 0;
-        /**
-         * 共有
-         */
-        Integer YES = 1;
-    }
+    public static final Integer IS_PRIVATE = 0; // 私有
+    public static final Integer IS_PUBLISH = 1; // 共有
 
     /**
      * true/false
      */
-    interface TrueFalse {
-        /**
-         * 正确
-         */
-        String TRUE = "true";
-        /**
-         * 错误
-         */
-        String FALSE = "false";
-    }
+    public static final String TRUE = "true"; // 正确
+    public static final String FALSE = "false"; // 错误
 
 }
