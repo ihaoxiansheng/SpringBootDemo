@@ -33,6 +33,12 @@ public class DemoTest {
         System.out.println("collect = " + collect);
 
 
+        List<String> fileIdList = new ArrayList<>();
+        fileIdList.add("1");
+        fileIdList.add("2");
+        String string = fileIdList.toString();
+        System.out.println("string = " + string);
+
         test1("11");
 
     }
