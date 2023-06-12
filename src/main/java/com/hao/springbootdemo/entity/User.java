@@ -1,5 +1,7 @@
 package com.hao.springbootdemo.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 /**
@@ -7,6 +9,7 @@ import lombok.Data;
  * @since 2022/12/15 15:53
  */
 @Data
+@TableName("user")
 public class User {
 
     private String id;
@@ -17,6 +20,7 @@ public class User {
 
     private String email;
 
+    @TableField(exist = false)
     private UserInfo userInfo;
 
 }
