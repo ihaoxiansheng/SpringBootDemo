@@ -1,12 +1,5 @@
 package com.hao.util.mp.injector.methods;
 
-/**
- * 根据columnMap 查询一条数据
- *
- * @author liuchengbiao
- * @date 2021/7/7 2:07 下午
- */
-
 import com.baomidou.mybatisplus.core.enums.SqlMethod;
 import com.baomidou.mybatisplus.core.injector.AbstractMethod;
 import com.baomidou.mybatisplus.core.metadata.TableInfo;

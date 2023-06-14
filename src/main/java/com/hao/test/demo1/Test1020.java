@@ -60,12 +60,12 @@ public class Test1020 {
                 "        v-if=\"selectSystems.includes(937) || selectSystems.includes(956) || selectSystems.includes(919) || selectSystems.includes(962) || selectSystems.includes(957) || selectMainSystems.includes('OA系统')\"\n" +
                 "        label=\"模板\"\n" +
                 "      >\n" +
-                "        <el-button v-if=\"selectSystems.includes(937)\" type=\"text\" @click=\"downFile(1024)\">中国电信集中MSS项目_合并报表_用户及角色权限模板.xlsx</el-button>\n" +
-                "        <el-button v-if=\"selectSystems.includes(956)\" type=\"text\" @click=\"downFile(1025)\">中国电信集中MSS项目_关联交易_用户及角色权限模板.xlsx</el-button>\n" +
-                "        <el-button v-if=\"selectSystems.includes(919)\" type=\"text\" @click=\"downFile(1022)\">中国电信集中MSS项目-数据分析平台-用户及角色权限模板.xlsx</el-button>\n" +
+                "        <el-button v-if=\"selectSystems.includes(937)\" type=\"text\" @click=\"downFile(1024)\">集团集中MSS项目_合并报表_用户及角色权限模板.xlsx</el-button>\n" +
+                "        <el-button v-if=\"selectSystems.includes(956)\" type=\"text\" @click=\"downFile(1025)\">集团集中MSS项目_关联交易_用户及角色权限模板.xlsx</el-button>\n" +
+                "        <el-button v-if=\"selectSystems.includes(919)\" type=\"text\" @click=\"downFile(1022)\">集团集中MSS项目-数据分析平台-用户及角色权限模板.xlsx</el-button>\n" +
                 "        <el-button v-if=\"selectSystems.includes(962)\" type=\"text\" @click=\"downFile(1027)\">权限清单模板_企业价值视图_数据集市.xlsx</el-button>\n" +
-                "        <el-button v-if=\"selectSystems.includes(957)\" type=\"text\" @click=\"downFile(1023)\">中国电信集中MSS项目_集中报表平台_用户及角色权限模板_省份(新)_20180620.xlsx</el-button>\n" +
-                "        <el-button v-if=\"selectMainSystems.includes('OA系统')\" type=\"text\" @click=\"downFile(1026)\">中国电信集团OA云会议权限申请表_v1.0.xlsx</el-button>\n" +
+                "        <el-button v-if=\"selectSystems.includes(957)\" type=\"text\" @click=\"downFile(1023)\">集团集中MSS项目_集中报表平台_用户及角色权限模板_省份(新)_20180620.xlsx</el-button>\n" +
+                "        <el-button v-if=\"selectMainSystems.includes('OA系统')\" type=\"text\" @click=\"downFile(1026)\">集团集团OA云会议权限申请表_v1.0.xlsx</el-button>\n" +
                 "      </el-form-item>\n" +
                 "    </div>\n" +
                 "  </div>\n" +

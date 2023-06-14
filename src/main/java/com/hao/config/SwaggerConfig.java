@@ -1,4 +1,4 @@
-package com.hao.config.async;
+package com.hao.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

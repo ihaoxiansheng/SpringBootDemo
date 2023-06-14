@@ -1,4 +1,4 @@
-package com.hao.config.async;
+package com.hao.config;
 
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
 import lombok.extern.slf4j.Slf4j;

@@ -1,12 +1,5 @@
 package com.hao.util.mp.injector.methods;
 
-/**
- * 根据ID集合，批量查询数据
- *
- * @author liuchengbiao
- * @date 2021/7/7 2:02 下午
- */
-
 import com.baomidou.mybatisplus.core.enums.SqlMethod;
 import com.baomidou.mybatisplus.core.injector.AbstractMethod;
 import com.baomidou.mybatisplus.core.metadata.TableInfo;

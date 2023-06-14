@@ -1,10 +1,5 @@
 package com.hao.util.mp.injector.methods;
 
-/**
- * @author liuchengbiao
- * @date 2021/7/7 1:34 下午
- */
-
 import com.baomidou.mybatisplus.core.enums.SqlMethod;
 import com.baomidou.mybatisplus.core.injector.AbstractMethod;
 import com.baomidou.mybatisplus.core.metadata.TableInfo;

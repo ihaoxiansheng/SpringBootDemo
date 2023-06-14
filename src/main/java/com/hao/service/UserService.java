@@ -10,4 +10,7 @@ import com.hao.entity.User;
 public interface UserService extends IService<User> {
 
     void addUser(User user);
+
+    User getUserById(String id);
+
 }

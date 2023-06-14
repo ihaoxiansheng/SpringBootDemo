@@ -28,11 +28,18 @@ public class UserController {
     public void addUser() {
         System.out.println("hello world");
         User user = new User();
+        user.setId("1");
         user.setName("hello world");
         user.setAge("24");
         user.setEmail("123@qq.com");
         userService.addUser(user);
         System.out.println("userService.getById(user.getId()) = " + userService.getById(user.getId()));
+    }
+
+    @GetMapping("/getUserById/{id}")
+    @ApiOperation("获取用户")
+    public User getUserById(@PathVariable String id){
+        return userService.getUserById(id);
     }
 
 }

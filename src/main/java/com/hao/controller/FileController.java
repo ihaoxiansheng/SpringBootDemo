@@ -1,10 +1,11 @@
 package com.hao.controller;
 
 // import cn.hutool.core.io.resource.ClassPathResource;
+
 import cn.hutool.core.io.resource.InputStreamResource;
-        import cn.hutool.json.JSONUtil;
+import cn.hutool.json.JSONUtil;
 import com.hao.util.exception.GlobalException;
-        import io.swagger.annotations.Api;
+import io.swagger.annotations.Api;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
@@ -32,7 +33,7 @@ import java.util.Map;
 public class FileController {
 
     /**
-     * @see <a href="https://www.yuque.com/chuinixiongkou/gc-starter/ubzm5e"></a>
+     * @see <a href="https://www.yuque.com/chuinixiongkou/gc-starter/zyt5uil155698kna"></a>
      * 返回类型必须为void
      */
     @PostMapping("/download")

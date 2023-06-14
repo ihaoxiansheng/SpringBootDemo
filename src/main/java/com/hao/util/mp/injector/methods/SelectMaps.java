@@ -1,12 +1,5 @@
 package com.hao.util.mp.injector.methods;
 
-/**
- * 查询满足条件所有数据
- *
- * @author liuchengbiao
- * @date 2021/7/9 9:44 上午
- */
-
 import com.baomidou.mybatisplus.core.enums.SqlMethod;
 import com.baomidou.mybatisplus.core.injector.AbstractMethod;
 import com.baomidou.mybatisplus.core.metadata.TableInfo;

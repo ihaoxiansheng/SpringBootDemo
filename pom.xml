@@ -251,6 +251,8 @@
     </dependencyManagement>
 
     <build>
+        <!--maven打包名称-->
+        <finalName>SpringBootDemo</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
