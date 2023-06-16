@@ -1,0 +1,2 @@
+#org.springframework.boot.SpringApplicationRunListener=com.hao.springbootdemo.config.async.MyApplicationRunListener
+org.springframework.boot.SpringApplicationRunListener=com.hao.config.MySpringApplicationRunListener
