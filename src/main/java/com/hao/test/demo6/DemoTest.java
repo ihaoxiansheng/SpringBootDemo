@@ -3,7 +3,11 @@ package com.hao.test.demo6;
 import cn.hutool.core.date.DateTime;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.StrUtil;
+import com.hao.entity.User;
 import org.apache.commons.lang3.StringUtils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author xu.liang
@@ -89,6 +93,30 @@ public class DemoTest {
         } else {
             System.out.println(digit1 + " and " + digit2 + " are equal");
         }
+
+        List<Integer> list = new ArrayList<>();
+        for (Integer integer : list) {
+            // 不会打印
+            System.out.println("integer = " + integer);
+        }
+
+
+        List<User> userList = new ArrayList<>();
+        User user = new User();
+        user.setId("1");
+        user.setName("John");
+        user.setAge("22");
+        user.setEmail("4");
+
+        userList.add(user);
+        userList.add(user);
+
+        System.out.println("userList1 = " + userList);
+        for (User user1 : userList) {
+            user1.setName("hh");
+        }
+        System.out.println("userList2 = " + userList);
+
 
     }
 }
