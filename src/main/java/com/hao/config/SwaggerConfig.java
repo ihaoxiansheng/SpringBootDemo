@@ -20,11 +20,12 @@ public class SwaggerConfig {
 
     // Docket bean definition （方法名不可重复）
     @Bean
-    public Docket api() {
+    public Docket haoApi() {
         // configuring the API documentation settings
         return new Docket(DocumentationType.SWAGGER_2)
+                .groupName("好")
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.hao.springbootdemo"))
+                .apis(RequestHandlerSelectors.basePackage("com.hao"))
 //                .paths(PathSelectors.ant("/api/*"))
                 .paths(PathSelectors.any())
                 .build()
@@ -34,7 +35,7 @@ public class SwaggerConfig {
     // setting the API information
     private ApiInfo apiInfo() {
 
-        return new ApiInfoBuilder().title("Demo API")
+        return new ApiInfoBuilder().title("Demo API") // 网页标签镖旗
                 .description("API documentation for Demo project")
                 .version("1.0.0")
                 .license("Apache 2.0")

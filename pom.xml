@@ -54,11 +54,11 @@
             <version>2.1.4</version>
         </dependency>
         <!--SQL性能分析、SQL打印-->
-<!--        <dependency>-->
-<!--            <groupId>p6spy</groupId>-->
-<!--            <artifactId>p6spy</artifactId>-->
-<!--            <version>3.9.0</version>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>p6spy</groupId>
+            <artifactId>p6spy</artifactId>
+            <version>3.9.0</version>
+        </dependency>
         <!--数据源连接池、监控-->
         <dependency>
             <groupId>com.alibaba</groupId>
@@ -149,11 +149,11 @@
             <version>1.9.6</version>
         </dependency>
         <!--swagger ui丑陋-->
-<!--        <dependency>-->
-<!--            <groupId>io.springfox</groupId>-->
-<!--            <artifactId>springfox-swagger-ui</artifactId>-->
-<!--            <version>2.9.2</version>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>2.9.2</version>
+        </dependency>
         <dependency>
             <groupId>org.apache.shiro</groupId>
             <artifactId>shiro-core</artifactId>
