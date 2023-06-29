@@ -76,8 +76,7 @@ public class SpringBootDemoApplication implements CommandLineRunner {
         String port = env.getProperty("server.port", "8080");
         String path = env.getProperty("server.servlet.context-path", "/");
         log.info("本地服务地址: http://localhost:{}{}", port, path);
-        log.info("本地服务地址: http://127.0.0.1:{}{}", port, path);
-        log.info("Swagger接口文档地址: http://{}:{}{}/doc.html", ip, port, path);
+        log.info("Swagger接口文档地址: http://localhost:{}{}/doc.html", port, path);
     }
 
     @EnableAsync

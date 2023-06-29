@@ -18,7 +18,7 @@ import lombok.Data;
 public class User {
 
     @ApiModelProperty("主键")
-    @TableId(type = IdType.NONE)
+    @TableId(type = IdType.AUTO)
     private String id;
 
     @ApiModelProperty("名称")
