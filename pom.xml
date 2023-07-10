@@ -245,6 +245,12 @@
             <version>3.5.1</version>
         </dependency>
 
+        <dependency>
+            <groupId>io.github.openfeign</groupId>
+            <artifactId>feign-okhttp</artifactId>
+            <version>10.10.1</version>
+        </dependency>
+
     </dependencies>
 
     <dependencyManagement>
