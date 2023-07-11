@@ -280,12 +280,39 @@
                 </configuration>
             </plugin>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <skipTests>true</skipTests>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <!--减少Lifecycle次数-->
+                        <!-- https://www.yuque.com/chuinixiongkou/gc-starter/zyt5uil155698kna 评论-->
+                        <!-- 原理 123456789 Lifecycle，jar绑定在7阶段，按照顺序执行到7时，jar又会执行一波123，然后继续从7执行。所以123阶段上的goal被执行2次了-->
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>2.3.7.RELEASE</version>
                 <configuration>
+                    <!--如果只有一个main方法，不需要指定，如果这个模块存在两个主类，那么就需要在插件中指定具体哪个启动类-->
                     <mainClass>com.hao.SpringBootDemoApplication</mainClass>
+<!--                    <includeSystemScope>true</includeSystemScope>-->
+                    <!--可用的值包括：ZIP 、JAR 、WAR、 NONE 。默认JAR-->
+<!--                    <layout>JAR</layout>-->
                 </configuration>
+                <!--下面的代码可以将依赖的第三方jar包通过maven插件打入工程的lib中-->
                 <executions>
                     <execution>
                         <id>repackage</id>

@@ -7,6 +7,7 @@ import com.hao.entity.User;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -116,6 +117,55 @@ public class DemoTest {
             user1.setName("hh");
         }
         System.out.println("userList2 = " + userList);
+
+
+        String[] a = {"SERVICE_TYPE", "TICKET_MAIN_INFO", "STATUS", "APPLYER", "APPLYTIME", "APPLYUNIT", "SOCTYPE", "MAJOR", "EVENTLEVEL", "AP_ATTACKBEGINTIME", "SPECLEVEL", "AP_DDOSOPTYPE", "AP_ATTACKEDIP", "AP_ASNO", "AP_NETTYPE", "AP_IDCNAME", "AP_ISPNAME", "AP_CUSTNAME", "AP_NETATTACKINGPROV", "AP_ATTACKSUPPLEMENT", "EVENTNAME", "EVENTHAPPENTIME", "PROVINCE", "OTHERSYSID", "PROPERTYIP", "TROUBLEDESC", "BACKUP", "AP_SPAMBEGINTIME", "AP_SPAMIP", "AP_SPAMIPTYPE", "AP_SPAMPROVINCE", "AP_SPAMIDCNAME", "AP_SPAMSUPPLEMENT", "AP_INFOSOURCE", "LEAKREPORTTIME", "AP_TROJANBEGINTIME", "AP_TROJANDEADLINETIME", "SUMMARY"};
+
+
+        List<User> modelList = new ArrayList<>();
+        User user1 = new User();
+        user1.setId("1");
+        user1.setName("John1");
+        user1.setAge("22");
+        user1.setEmail("4");
+        modelList.add(user1);
+
+        User user2 = new User();
+        user2.setId("1");
+        user2.setName("John2");
+        user2.setAge("22");
+        user2.setEmail("4");
+        modelList.add(user2);
+
+        User user3 = new User();
+        user3.setId("1");
+        user3.setName("John3");
+        user3.setAge("22");
+        user3.setEmail("4");
+        modelList.add(user3);
+
+        System.out.println(" ========= ");
+        System.out.println("modelList = " + modelList);
+
+        Iterator<User> iterator = modelList.iterator();
+        while (iterator.hasNext()) {
+            User next = iterator.next();
+            if ("John1".equals(next.getName())) {
+                iterator.remove();
+                continue;
+            }
+            System.out.println("next = " + next);
+        }
+
+        // ConcurrentModificationException
+//        for (User u : modelList1) {
+//            if ("John1".equals(u.getName())) {
+//                modelList1.remove(u);
+//                continue;
+//            }
+//            System.out.println("u = " + u);
+//        }
+//        System.out.println("modelList1 = " + modelList1);
 
 
     }

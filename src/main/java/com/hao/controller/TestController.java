@@ -26,8 +26,17 @@ import java.util.List;
 @Api(tags = "Test")
 public class TestController {
 
+//    @Value("${test.hello1}")
+//    private Integer hello1;
+//
+//    @Value("#{'${test.hello2:}'.split(',')}")
+//    private Set<String> hello2;
+//
+//    @Value("${test.hello3:10000}")
+//    private Integer connectTimeout;
+
     @Resource
-    JdbcTemplate jdbcTemplate;
+    private JdbcTemplate jdbcTemplate;
 
     @GetMapping("/hello")
     @ApiOperation("hello")
