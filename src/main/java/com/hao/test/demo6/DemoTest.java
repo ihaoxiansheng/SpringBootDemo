@@ -5,8 +5,10 @@ import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.StrUtil;
 import com.hao.entity.User;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.util.AntPathMatcher;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
@@ -166,6 +168,35 @@ public class DemoTest {
 //            System.out.println("u = " + u);
 //        }
 //        System.out.println("modelList1 = " + modelList1);
+
+
+        final String[] API_PREFIX1 = {"/api/agents/**", "/api/queues/**", "/api/calls/**", "/api/conferences/**"};
+        String uri = "/api/agents/list";
+        boolean present = Arrays.stream(API_PREFIX1).anyMatch(prefix -> {
+            AntPathMatcher antPathMatcher = new AntPathMatcher();
+            return antPathMatcher.match(prefix, uri);
+        });
+
+        System.out.println("present = " + present);
+
+        String var;
+        int varInt;
+
+        double v = Math.random() * 10;
+        System.out.println("v = " + v);
+        String substring = String.valueOf(v).substring(0, 1);
+        System.out.println("substring = " + substring);
+        int i = Integer.parseInt(String.valueOf(v).substring(0, 1));
+        if (i > 2) {
+            var = "2";
+            varInt = 2;
+        } else {
+            var = "1";
+            varInt = 1;
+        }
+        System.out.println("varInt = " + varInt);
+        System.out.println("var = " + var);
+
 
 
     }
