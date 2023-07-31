@@ -51,3 +51,6 @@ elasticsearch:
   protocol: http
   username: elastic
   password: hao@123
+test:
+  a: 1
+  b: 2

@@ -9,7 +9,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.core.env.Environment;
+import org.springframework.core.env.MapPropertySource;
+import org.springframework.core.env.MutablePropertySources;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.scheduling.annotation.EnableAsync;
@@ -19,7 +22,9 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 import java.net.InetAddress;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.Executor;
 import java.util.concurrent.ThreadPoolExecutor;
 
@@ -44,13 +49,45 @@ public class SpringBootDemoApplication implements CommandLineRunner {
     public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
         return args -> {
 
-
             String[] beanNames = ctx.getBeanDefinitionNames();
             log.info("Let's inspect the beans provided by Spring Boot: size = {}", beanNames.length);
             Arrays.sort(beanNames);
             for (String beanName : beanNames) {
                 // System.out.println(beanName);
             }
+        };
+    }
+
+    /**
+     * 应用程序在运行时动态获取和更新配置信息
+     */
+    @Bean
+    public CommandLineRunner propertySourcesRunner(ApplicationContext applicationContext) {
+        ConfigurableEnvironment environment = (ConfigurableEnvironment) applicationContext.getEnvironment();
+        // 设置当前的 active profiles
+//        environment.setActiveProfiles();
+        // 获取Environment中的PropertySources对象，然后遍历其中的PropertySource对象并打印
+        MutablePropertySources propertySources = environment.getPropertySources();
+        propertySources.forEach(propertySource -> {
+            System.out.println(propertySource);
+            System.out.println("==========================");
+        });
+
+        Map<String, Object> map1 = new HashMap<>();
+        map1.put("test.a", "张三");
+        MapPropertySource propertySource1 = new MapPropertySource("propertySource1", map1);
+
+        Map<String, Object> map2 = new HashMap<>();
+        map2.put("test.a", "李四");
+        MapPropertySource propertySource2 = new MapPropertySource("propertySource2", map2);
+
+        propertySources.addFirst(propertySource2);
+        propertySources.addFirst(propertySource1);
+
+        // 输出张三，把两个addFirst调换位置后，输出李四
+        System.out.println(environment.getProperty("test.a"));
+
+        return args -> {
         };
     }
 
@@ -67,7 +104,7 @@ public class SpringBootDemoApplication implements CommandLineRunner {
             Resource resource = resourceLoader.getResource("classpath:success.txt");
             List<String> successLineList = IOUtils.readLines(resource.getInputStream(), StandardCharsets.UTF_8);
             for (String line : successLineList) {
-                log.info(line);
+//                log.info(line);
             }
         } catch (Exception e) {
             log.error("启动失败，如果您想自定义启动成功标识，您可以在工程src/resources下创建success.txt文件，并写入启动成功输出的信息");
