@@ -1,5 +1,8 @@
 package com.hao.test.demo7;
+import com.hao.entity.UserInfo;
 
+import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.bean.copier.CopyOptions;
 import com.hao.entity.User;
 import org.apache.commons.lang3.SerializationUtils;
 import org.apache.commons.lang3.tuple.MutablePair;
@@ -26,8 +29,39 @@ public class DemoTest {
         System.out.println("fileIdList = " + fileIdList.toString());
         System.out.println("fileIdList2 = " + String.join(",", fileIdList));
 
-        testMutableTriple();
-        testSerializationUtils();
+//        testMutableTriple();
+//        testSerializationUtils();
+
+        long currentTimeMillis = System.currentTimeMillis();
+        System.out.println("当前时间的毫秒数： " + currentTimeMillis);
+        long l = System.nanoTime();
+        System.out.println("当前时间的毫秒数： " + l);
+
+
+        User user1 = new User();
+        user1.setId("1");
+        user1.setName("11");
+        user1.setAge("111");
+        user1.setEmail(null);
+        user1.setUserInfo(new UserInfo());
+
+        User user2 = new User();
+        user2.setId("2");
+        user2.setName("22");
+        user2.setAge("222");
+        user2.setEmail("2222");
+        user2.setUserInfo(new UserInfo());
+
+        // A复制给B A对象中的null不覆盖B中对象的值
+        BeanUtil.copyProperties(user1, user2, CopyOptions.create().setIgnoreNullValue(true).setIgnoreError(true));
+        System.out.println("user2 = " + user2);
+
+        String num = "123456789";
+        String sub = num.substring(0, 2);
+        System.out.println("sub = " + sub);
+        String substring = num.substring(num.length() - 5);
+        System.out.println("substring = " + substring);
+
 
     }
 
