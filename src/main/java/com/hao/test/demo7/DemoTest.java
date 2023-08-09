@@ -1,15 +1,17 @@
 package com.hao.test.demo7;
-import com.hao.entity.UserInfo;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.bean.copier.CopyOptions;
 import com.hao.entity.User;
+import com.hao.entity.UserInfo;
 import org.apache.commons.lang3.SerializationUtils;
+import org.apache.commons.lang3.time.StopWatch;
 import org.apache.commons.lang3.tuple.MutablePair;
 import org.apache.commons.lang3.tuple.MutableTriple;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * @author xu.liang
@@ -62,6 +64,22 @@ public class DemoTest {
         String substring = num.substring(num.length() - 5);
         System.out.println("substring = " + substring);
 
+
+        StopWatch watch = new StopWatch(UUID.randomUUID().toString());
+        watch.start();
+//        watch.reset();
+        long startTime = watch.getStartTime();
+        String message = watch.getMessage();
+
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        String times = (System.currentTimeMillis() - startTime) + "ms";
+
+        System.out.println("message = " + message);
+        System.out.println("times = " + times);
 
     }
 
