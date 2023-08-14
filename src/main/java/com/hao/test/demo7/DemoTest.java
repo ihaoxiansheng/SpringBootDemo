@@ -8,10 +8,11 @@ import org.apache.commons.lang3.SerializationUtils;
 import org.apache.commons.lang3.time.StopWatch;
 import org.apache.commons.lang3.tuple.MutablePair;
 import org.apache.commons.lang3.tuple.MutableTriple;
+import org.assertj.core.util.Lists;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * @author xu.liang
@@ -81,6 +82,35 @@ public class DemoTest {
         System.out.println("message = " + message);
         System.out.println("times = " + times);
 
+        List<Integer> numberList = new ArrayList<>(Arrays.asList(1));
+        numberList.add(2);
+        System.out.println("numberList = " + numberList);
+        List<Integer> list1 = Lists.list(1, 2, 3, 4);
+        System.out.println("list1 = " + list1);
+        String[] strings = {"1", "2", "3", "4", "5"};
+        List<String> strings1 = Lists.newArrayList(strings);
+        System.out.println("strings1 = " + strings1);
+
+
+        String s = "1,2,3,4,5";
+        String[] parts = s.split(",");
+        Set<Integer> intSet = new HashSet<>();
+        for (String part : parts) {
+            intSet.add(Integer.parseInt(part));
+        }
+        System.out.println("intSet = " + intSet);
+
+
+        String s1 = "1,2,3,4,5";
+        Set<Integer> intSet1 = Stream.of(s1.split(","))
+                .map(Integer::parseInt)
+                .collect(Collectors.toSet());
+        Set<Integer> intSet2 = Arrays.stream(s1.split(","))
+                .map(Integer::parseInt)
+                .collect(Collectors.toSet());
+        System.out.println("intSet1 = " + intSet1);
+        System.out.println("intSet2 = " + intSet2);
+
     }
 
     /**
@@ -113,7 +143,7 @@ public class DemoTest {
     /**
      * 增强的功能：深拷贝，方便的反序列化Deserialize，序列化Serialize等。
      */
-    public static void testSerializationUtils(){
+    public static void testSerializationUtils() {
         User user1 = new User();
         user1.setName("第二中学");
         user1.setAge("22");
