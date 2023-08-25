@@ -41,7 +41,7 @@ public class CommonEntity {
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     @ApiModelProperty("更新时间")
-    @TableField(value = "MODIFY_TIME", fill = FieldFill.INSERT_UPDATE)
+    @TableField(value = "UPDATE_TIME", fill = FieldFill.INSERT_UPDATE)
     private String updateTime;
 
     @TableLogic(delval = "1", value = "0")

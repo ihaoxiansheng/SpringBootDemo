@@ -15,7 +15,7 @@ import java.io.Serializable;
  * @since 2022/12/15 15:53
  */
 @Data
-@ApiModel("用户")
+@ApiModel("用户表")
 @TableName("user")
 public class User implements Serializable {
 

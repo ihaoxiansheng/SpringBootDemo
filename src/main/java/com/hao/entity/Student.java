@@ -1,5 +1,7 @@
 package com.hao.entity;
 
+import com.baomidou.mybatisplus.annotation.TableName;
+import io.swagger.annotations.ApiModel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -13,20 +15,28 @@ import lombok.ToString;
 @ToString
 @EqualsAndHashCode(callSuper = false)
 @AllArgsConstructor
+@ApiModel("学生表")
+@TableName("student")
 public class Student {
     /**
      * 学号
      */
-    private long id;
+    private Long id;
 
+    /**
+     * 名字
+     */
     private String name;
 
-    private int age;
+    /**
+     * 年龄
+     */
+    private Integer age;
 
     /**
      * 年级
      */
-    private int grade;
+    private Integer grade;
 
     /**
      * 专业
