@@ -69,8 +69,8 @@ public class SpringBootDemoApplication implements CommandLineRunner {
         // 获取Environment中的PropertySources对象，然后遍历其中的PropertySource对象并打印
         MutablePropertySources propertySources = environment.getPropertySources();
         propertySources.forEach(propertySource -> {
-            System.out.println(propertySource);
-            System.out.println("==========================");
+//            System.out.println(propertySource);
+//            System.out.println("==========================");
         });
 
         Map<String, Object> map1 = new HashMap<>();
