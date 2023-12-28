@@ -34,7 +34,7 @@ import java.util.concurrent.ThreadPoolExecutor;
  */
 @SpringBootApplication
 @EnableSwagger2
-@MapperScan(value = {"com.hao.dao.**"})
+@MapperScan(value = {"com.hao.dao.**", "com.hao.util.**"})
 @Slf4j
 public class SpringBootDemoApplication implements CommandLineRunner {
 
@@ -53,7 +53,7 @@ public class SpringBootDemoApplication implements CommandLineRunner {
             log.info("Let's inspect the beans provided by Spring Boot: size = {}", beanNames.length);
             Arrays.sort(beanNames);
             for (String beanName : beanNames) {
-                // System.out.println(beanName);
+//                 System.out.println(beanName);
             }
         };
     }
