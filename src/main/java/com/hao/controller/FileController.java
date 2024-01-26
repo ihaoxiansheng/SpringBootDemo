@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
+import java.net.URL;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
@@ -209,6 +210,32 @@ public class FileController {
         Map<String, String> map = new HashMap<>(16);
         map.put("fileContent", data);
         return map;
+    }
+
+    @PostMapping("/downloadRemoteFile")
+    public String downloadFile(String filename, String inputPath, final HttpServletRequest request, final HttpServletResponse response) {
+        // 实际路径
+        String downLoadPath = "http://212.212.212.212:9999/XXXX/p1eivgpi8ebnj1h8c1307p4es594.rar";
+        byte[] buff = new byte[4096];
+        BufferedInputStream bis = null;
+        OutputStream bos;
+        try {
+            response.setHeader("content-type", "application/x-msdownload");
+            response.setContentType("application/x-msdownload;");
+            response.setHeader("Content-disposition", "attachment; filename=" + new String(filename.getBytes("GBK"), "ISO8859-1"));
+            bos = response.getOutputStream();
+            bis = new BufferedInputStream(new URL(downLoadPath).openConnection().getInputStream());
+            int bytesRead;
+            while (-1 != (bytesRead = bis.read(buff, 0, buff.length))) {
+                bos.write(buff, 0, bytesRead);
+            }
+        } catch (IOException e) {
+            log.error("下载异常：", e);
+        } finally {
+            IOUtils.closeQuietly(bis);
+        }
+        // 实现原理：读取流输出到本地页面，返回值为null就会弹出页面
+        return null;
     }
 
 }
