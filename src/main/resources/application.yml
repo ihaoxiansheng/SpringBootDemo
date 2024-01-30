@@ -7,6 +7,11 @@ server:
 #      enabled: true
 #      mime-types: application/json
 spring:
+  redis:
+    host: 192.168.100.100
+    port: 6379
+    password: 123456
+    timeout: 5000
   # jackson时间格式化
   jackson:
     time-zone: GMT+8
