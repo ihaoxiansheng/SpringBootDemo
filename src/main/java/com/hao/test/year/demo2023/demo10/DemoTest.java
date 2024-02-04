@@ -84,6 +84,10 @@ public class DemoTest {
         user1111.setName("1,2,3");
         userList.add(user1111);
 
+        // 并行流获取元素
+        List<String> names = userList.parallelStream().map(User::getName).collect(Collectors.toList());
+        System.out.println("names = " + names);
+
         String caseLabel = "1,2";
         List<String> caseLabelList = Arrays.asList(caseLabel.split(","));
 
