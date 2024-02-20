@@ -24,7 +24,7 @@ public class User implements Serializable {
     private String id = "";
 
     @ApiModelProperty("名称")
-    private String name;
+    private String name = "";
 
     @ApiModelProperty("年龄")
     private String age;
