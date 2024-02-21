@@ -2,8 +2,10 @@ package com.hao.test.year.demo2024.demo2;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.bean.copier.CopyOptions;
+import cn.hutool.core.map.MapUtil;
 import com.hao.entity.User;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -28,6 +30,12 @@ public class DemoTest {
         copyOptions.ignoreNullValue();
         User user = BeanUtil.mapToBean(map, User.class, true, copyOptions);
         System.out.println("user = " + user);
+
+        // toObjectArray方法注释错误，https://gitee.com/dromara/hutool/issues/I9214T
+        Object[][] objectArray = MapUtil.toObjectArray(map);
+        for (Object[] objects : objectArray) {
+            System.out.println("objects = " + Arrays.toString(objects));
+        }
 
     }
 
