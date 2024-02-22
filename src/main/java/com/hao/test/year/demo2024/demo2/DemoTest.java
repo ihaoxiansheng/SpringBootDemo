@@ -3,7 +3,9 @@ package com.hao.test.year.demo2024.demo2;
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.bean.copier.CopyOptions;
 import cn.hutool.core.map.MapUtil;
+import cn.hutool.core.util.RandomUtil;
 import com.hao.entity.User;
+import org.apache.commons.lang3.RandomStringUtils;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -36,6 +38,16 @@ public class DemoTest {
         for (Object[] objects : objectArray) {
             System.out.println("objects = " + Arrays.toString(objects));
         }
+
+        // 获取一个六位随机数字
+        String randomNumber = RandomUtil.randomNumbers(6);
+        // 获取一个六位随机数字
+        String randomNumber1 = RandomStringUtils.randomNumeric(6);
+        // 获取一个六位随机数字和大小写字母组合字符串
+        String randomStr = RandomStringUtils.randomAlphanumeric(6);
+        System.out.println("randomStr = " + randomStr);
+        System.out.println("randomNumber1 = " + randomNumber1);
+        System.out.println("randomNumber = " + randomNumber);
 
     }
 
