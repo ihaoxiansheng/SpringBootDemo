@@ -97,6 +97,6 @@ public class R<T> implements Serializable {
 
     @JsonIgnore
     public boolean isError() {
-        return this.code != 200;
+        return !isSuccess();
     }
 }
