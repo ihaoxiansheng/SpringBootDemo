@@ -1,4 +1,4 @@
-package com.hao.test.year.demo2024.demo3.CrossOrigin;
+package com.hao.config.CrossOrigin;
 
 
 import org.springframework.http.HttpStatus;

@@ -8,7 +8,7 @@ import java.util.List;
  * @author xu.liang
  * @since 2023/2/27 09:11
  */
-public interface TreeVo<T> {
+public interface TreeVO<T> {
 
     void setId(String id);
 

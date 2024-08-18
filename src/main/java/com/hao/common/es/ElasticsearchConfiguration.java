@@ -74,7 +74,7 @@ public class ElasticsearchConfiguration {
         HttpHost[] httpHost = hostLists.toArray(new HttpHost[]{});
         // 构建连接对象
         RestClientBuilder builder = RestClient.builder(httpHost);
-        //开始设置用户名和密码
+        // 开始设置用户名和密码
         if (StringUtils.isNotBlank(userName) && StringUtils.isNotBlank(password)) {
             CredentialsProvider credentialsProvider = new BasicCredentialsProvider();
             credentialsProvider.setCredentials(AuthScope.ANY, new UsernamePasswordCredentials(userName, password));
