@@ -25,7 +25,6 @@ public class AsyncConfig2 implements AsyncConfigurer, AsyncUncaughtExceptionHand
     @Override
     public Executor getAsyncExecutor() {
         ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
-        executor.initialize();
         executor.setCorePoolSize(5);
         executor.setMaxPoolSize(10);
         executor.setQueueCapacity(25);
@@ -40,6 +39,10 @@ public class AsyncConfig2 implements AsyncConfigurer, AsyncUncaughtExceptionHand
         // 3.DiscardPolicy:丢弃任务，但是不抛出异常。可以配合这种模式进行自定义的处理方式
         // 4.DiscardOldestPolicy:丢弃队列最早的未处理任务，然后重新尝试执行任务
         executor.setRejectedExecutionHandler(new ThreadPoolExecutor.CallerRunsPolicy());
+
+        // 参考链接：https://segmentfault.com/a/1190000010142962
+        // 如果使用threadPoolTaskExecutor()来定义bean，则不需要初始化initialize
+        executor.initialize();  //如果不初始化，导致找到不到执行器 见AsyncConfig3
 
         return executor;
     }
