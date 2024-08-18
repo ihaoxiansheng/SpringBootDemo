@@ -1,10 +1,13 @@
 package com.hao;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;
+import org.apache.ibatis.annotations.Mapper;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.AutoConfigurationPackages;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
@@ -15,16 +18,16 @@ import org.springframework.core.env.MapPropertySource;
 import org.springframework.core.env.MutablePropertySources;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
+import org.springframework.http.MediaType;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import java.net.InetAddress;
 import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.text.SimpleDateFormat;
+import java.util.*;
 import java.util.concurrent.Executor;
 import java.util.concurrent.ThreadPoolExecutor;
 
@@ -32,9 +35,9 @@ import java.util.concurrent.ThreadPoolExecutor;
  * @author xu.liang
  * @since 2022/9/23 09:42
  */
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = {"com.hao.**"})
 @EnableSwagger2
-@MapperScan(value = {"com.hao.dao.**", "com.hao.util.**"})
+@MapperScan(value = {"com.hao.config.**", "com.hao.dao.**", "com.hao.util.**"}, annotationClass = Mapper.class)
 @Slf4j
 public class SpringBootDemoApplication implements CommandLineRunner {
 
@@ -47,6 +50,8 @@ public class SpringBootDemoApplication implements CommandLineRunner {
      */
     @Bean
     public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
+        // 获取启动类所在基包basePackages
+        System.out.printf("basePackages: %s%n", AutoConfigurationPackages.get(ctx));
         return args -> {
 
             String[] beanNames = ctx.getBeanDefinitionNames();
@@ -132,5 +137,19 @@ public class SpringBootDemoApplication implements CommandLineRunner {
         }
     }
 
+    @Bean
+    public MappingJackson2HttpMessageConverter getMappingJackson2HttpMessageConverter() {
+        MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter = new MappingJackson2HttpMessageConverter();
+        // 设置日期格式
+        ObjectMapper objectMapper = new ObjectMapper();
+        SimpleDateFormat smt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        objectMapper.setDateFormat(smt);
+        mappingJackson2HttpMessageConverter.setObjectMapper(objectMapper);
+        // 设置中文编码格式
+        List<MediaType> list = new ArrayList<>();
+        list.add(MediaType.APPLICATION_JSON_UTF8);
+        mappingJackson2HttpMessageConverter.setSupportedMediaTypes(list);
+        return mappingJackson2HttpMessageConverter;
+    }
 
 }
