@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 8888
   servlet:
     context-path: /demo
 #    # 开启Gzip压缩，默认只压缩超过2048字节的数据
@@ -7,20 +7,6 @@ server:
 #      enabled: true
 #      mime-types: application/json
 spring:
-  redis:
-    host: 101.132.133.39
-    port: 6379
-    password: 123456
-    timeout: 5000
-  # 消息队列配置
-  rocketmq:
-    operationMode: NATIVE
-    address: 101.132.133.39:9876
-    producerList:
-      - P_TEST_PRODUCER
-    topicList:
-      - LOG_TOPIC
-      - ORDER_TOPIC
   # jackson时间格式化
   jackson:
     time-zone: GMT+8
@@ -36,6 +22,20 @@ spring:
     url: jdbc:p6spy:mysql://localhost:3306/test-xl?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
     username: root
     password: 123456
+  redis:
+    host: 101.132.133.39
+    port: 6379
+    password: 123456
+    timeout: 5000
+  # 消息队列配置
+  rocketmq:
+    operationMode: NATIVE
+    address: 101.132.133.39:9876
+    producerList:
+      - P_TEST_PRODUCER
+    topicList:
+      - LOG_TOPIC
+      - ORDER_TOPIC
 
 # 下面这些内容是为了让MyBatis映射
 mybatis:
@@ -48,7 +48,7 @@ mybatis:
 logging:
   level:
     # 1
-    com.hao.**: debug
+#    com.hao.**: debug
     # 解决swagger刷新时转换异常警告
     io.swagger.models.parameters.AbstractSerializableParameter: error
     # 解决controller中方法名重复控制台打印警告
