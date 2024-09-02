@@ -465,6 +465,14 @@
             <version>1.26.0</version>
         </dependency>
 
+        <!--json-smart 是一个轻量级的 JSON 解析和生成库。它的主要作用是处理 JSON 数据，包括将 JSON 字符串解析成 Java 对象，
+        或者将 Java 对象转换成 JSON 字符串。json-smart 在一些场景中可能被用作基础库，提供高效的 JSON 处理功能-->
+        <dependency>
+            <groupId>net.minidev</groupId>
+            <artifactId>json-smart</artifactId>
+            <version>2.4.8</version>
+        </dependency>
+
 
     </dependencies>
 
