@@ -133,6 +133,21 @@ public class FileController {
         }
     }
 
+    @PostMapping("/download4")
+    public void download4() {
+        // 最简单方法导出文件，后端返回数据给前端，然后前端执行下面的代码即可(vue前端）
+
+     /*
+        import FileSaver from 'file-saver'
+        // 将json转换成字符串
+          const blob = new Blob([testData], { type: '' })
+        FileSaver.saveAs(blob, fileName + '.json')
+        this.$message({
+                message: '导出成功',
+                type: 'success'
+          })*/
+    }
+
     @PostMapping("/upload")
     public Map<String, String> upload(@RequestPart MultipartFile file) {
         BufferedReader reader = null;
@@ -185,6 +200,7 @@ public class FileController {
 
     @PostMapping("/readResourceFile")
     @SneakyThrows
+    // @RequestLine() // feign
     public Map<String, String> readResourceFile() {
         // spring工具包
         ClassPathResource classPathResource = new ClassPathResource("vue模板.vue");
