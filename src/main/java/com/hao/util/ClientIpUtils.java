@@ -17,6 +17,8 @@ import java.net.URL;
 import java.util.Objects;
 
 /**
+ * 获取公网IP地址
+ *
  * @author xu.liang
  * @since 2024/5/10 10:27
  */
