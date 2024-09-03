@@ -13,6 +13,6 @@ public interface TreeService {
      *
      * @param voList
      */
-    void transToTree(List<? extends TreeVo<?>> voList);
+    void transToTree(List<? extends TreeVO<?>> voList);
 
 }

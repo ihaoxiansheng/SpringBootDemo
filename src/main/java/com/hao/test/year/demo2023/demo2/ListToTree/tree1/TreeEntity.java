@@ -13,7 +13,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class TreeEntity implements TreeVo<TreeEntity> {
+public class TreeEntity implements TreeVO<TreeEntity> {
 
     private String id;
 

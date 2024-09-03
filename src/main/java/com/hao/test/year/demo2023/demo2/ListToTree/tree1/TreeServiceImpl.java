@@ -17,16 +17,16 @@ public class TreeServiceImpl implements TreeService {
     }
 
     @Override
-    public void transToTree(List<? extends TreeVo<?>> voList) {
-        Map<String, TreeVo<?>> voMap = new HashMap<>();
+    public void transToTree(List<? extends TreeVO<?>> voList) {
+        Map<String, TreeVO<?>> voMap = new HashMap<>();
         voList.forEach((vox) -> voMap.put(vox.getId(), vox));
 
-        for (TreeVo<?> treeVo : voList) {
+        for (TreeVO<?> treeVo : voList) {
             if (!"0".equals(treeVo.getParentId())) {
-                TreeVo<?> parentVo = voMap.get(treeVo.getParentId());
+                TreeVO<?> parentVo = voMap.get(treeVo.getParentId());
                 if (parentVo != null) {
                     treeVo.setParentName(parentVo.getName());
-                    List<TreeVo> children = (List<TreeVo>) parentVo.getChildren();
+                    List<TreeVO> children = (List<TreeVO>) parentVo.getChildren();
                     if (children == null) {
                         children = Lists.newArrayList();
                         parentVo.setChildren((List) children);
