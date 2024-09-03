@@ -29,6 +29,7 @@ public class Demo1216Test {
                 try {
                     int a = 1 / 0;
                 } catch (Exception e) {
+                    System.out.println("catch：" + s);
                     continue;
                     // return;
                     // break;
