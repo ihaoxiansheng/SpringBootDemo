@@ -98,10 +98,12 @@ public class DemoTest {
         map.put("name", "小明");
         System.out.println("put 存在的: " + map.put("name", "小艾"));
         System.out.println("put 不存在的: " + map.put("hh", "小红"));
-        System.out.println("put 方法后，map集合： " + map);
+        System.out.println("map集合： " + map);
         System.out.println("putIfAbsent 存在的: " + map.putIfAbsent("name", "孙悟空"));
         System.out.println("putIfAbsent 不存在的: " + map.putIfAbsent("qq", "猪八戒"));
-        System.out.println("putIfAbsent 方法后，map集合： " + map);
+        System.out.println("computeIfPresent 存在的: " + map.computeIfPresent("qq", (k, v) -> "猪八戒1"));
+        System.out.println("computeIfPresent 不存在的: " + map.computeIfPresent("qqq", (k, v) -> "猪八戒2"));
+        System.out.println("map集合： " + map);
 
         System.out.println();
 
