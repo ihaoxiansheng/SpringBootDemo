@@ -77,12 +77,12 @@ public class DemoTest {
         // 详细用法：https://blog.csdn.net/HaHa_Sir/article/details/133921844
         Map<String, String> result = new HashMap<>();
         result.put("name", "小明");
-        String name = result.getOrDefault("name", "张三");
+        String name = result.getOrDefault("name1", "张三");
         System.out.println("name = " + name);
         // 编程中经常遇到这种数据结构，判断一个map中是否存在这个key，如果存在则处理value的数据，
         // 如果不存在，则创建一个满足value要求的数据结构放到value中。
         // 这个业务场景要写很大一堆代码，map本身的这个computeIfAbsent方法直接搞定。
-        result.computeIfAbsent("name", key -> "李四");
+        result.computeIfAbsent("name2", key -> "李四");
         System.out.println("result1 = " + result);
         // key转换为value
         result.compute("name", (k, v) -> k);
@@ -93,6 +93,15 @@ public class DemoTest {
             return "王五";
         });
         System.out.println("result3 = " + result);
+
+        Map<Object, Object> map = new HashMap<>();
+        map.put("name", "小明");
+        System.out.println("put 存在的: " + map.put("name", "小艾"));
+        System.out.println("put 不存在的: " + map.put("hh", "小红"));
+        System.out.println("put 方法后，map集合： " + map);
+        System.out.println("putIfAbsent 存在的: " + map.putIfAbsent("name", "孙悟空"));
+        System.out.println("putIfAbsent 不存在的: " + map.putIfAbsent("qq", "猪八戒"));
+        System.out.println("putIfAbsent 方法后，map集合： " + map);
 
         System.out.println();
 
