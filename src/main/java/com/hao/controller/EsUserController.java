@@ -8,7 +8,7 @@ import com.hao.dto.es.CommonSearchDto;
 import com.hao.dto.es.UserDto;
 import com.hao.dto.es.UserSearchDto;
 import com.hao.entity.es.UserEntity;
-import com.hao.service.impl.EsUserServiceImpl;
+import com.hao.service.EsUserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -28,7 +28,7 @@ import javax.annotation.Resource;
 public class EsUserController {
 
     @Resource
-    private EsUserServiceImpl esUserService;
+    private EsUserService esUserService;
 
     @PostMapping("/save")
     @ApiOperation(value = "新增es用户数据", position = 40, notes = "新增es用户数据", produces = MediaType.APPLICATION_JSON_VALUE)
