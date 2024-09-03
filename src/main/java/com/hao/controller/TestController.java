@@ -4,25 +4,35 @@ import cn.hutool.http.useragent.UserAgent;
 import cn.hutool.http.useragent.UserAgentUtil;
 import cn.hutool.json.JSONUtil;
 import com.alibaba.fastjson.JSON;
+import com.github.luben.zstd.Zstd;
+import com.hao.test.year.demo2023.demo9.IPUtils;
+import com.hao.test.year.demo2024.demo4.GetOrderCode;
+import com.hao.util.ClientIpUtils;
 import com.hao.util.exception.GlobalExceptionHandler;
+import io.netty.buffer.ByteBuf;
+import io.netty.buffer.Unpooled;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.http.MediaType;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -54,11 +64,14 @@ public class TestController {
 
     private final AtomicInteger TIMES = new AtomicInteger(0);
 
+    @Resource
+    private ClientIpUtils clientIpUtils;
+
     @GetMapping("/hello")
     @ApiOperation("hello")
     public String test() {
-        // List<Map<String, Object>> maps = jdbcTemplate.queryForList("select version();");
-        // System.out.println("maps = " + maps);
+        List<Map<String, Object>> maps = jdbcTemplate.queryForList("select version();");
+        System.out.println("maps = " + maps);
         return "hello springboot";
     }
 
@@ -76,6 +89,10 @@ public class TestController {
         return result;
     }
 
+    /**
+     * 另见：
+     * @see GetOrderCode
+     */
     @GetMapping("/createNoTest")
     public void createNoTest() {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
@@ -94,6 +111,38 @@ public class TestController {
         sheetNo.append(primaryNum);
         String no = "M" + sheetNo;
         System.out.println("no = " + no);
+    }
+
+    @GetMapping("/redisCompressTest")
+    @ApiOperation("redis压缩大value测试")
+    public void redisCompressTest() {
+
+        // Zstd压缩算法的magic number
+        final int MAGIC_NUMBER = 0xFD2FB528;
+
+        String bigValue = "大value";
+        // 压缩大value
+        byte[] compressedData = Zstd.compress(bigValue.getBytes());
+        redisTemplate.opsForValue().set("bigValue", compressedData);
+
+        // 获取压缩后的数据
+        byte[] bigValueBytes = (byte[]) redisTemplate.opsForValue().get("bigValue");
+        if (bigValueBytes == null) {
+            log.info("获取数据为空");
+            return;
+        }
+        ByteBuffer buffer = ByteBuffer.wrap(bigValueBytes);
+        int magic = buffer.order(ByteOrder.LITTLE_ENDIAN).getInt();
+        // 如果是压缩过的数据，则进行解压
+        if (MAGIC_NUMBER == magic) {
+            ByteBuf buf = Unpooled.wrappedBuffer(bigValueBytes);
+            int readInt = buf.readInt();
+            byte[] decompress = Zstd.decompress(bigValueBytes, readInt);
+            log.info("压缩过的数据：{}", new String(decompress));
+        } else {
+            log.info("非压缩过的数据：{}", new String(bigValueBytes));
+        }
+
     }
 
     /**
@@ -128,6 +177,41 @@ public class TestController {
     public String cheat() {
         return "【招贤纳士-专场】500-800元/天，不用坐班，大量要人，时间自由可日结！";
     }
+
+    @GetMapping(value = "/testBrowser", produces = MediaType.APPLICATION_JSON_VALUE)
+    public String testBrowser() {
+        // 获取request
+        HttpServletRequest request = ((ServletRequestAttributes) Objects.requireNonNull(RequestContextHolder.getRequestAttributes())).getRequest();
+        // 获取浏览器信息
+        String userAgentStr = request.getHeader("User-Agent");
+        List<String> list = IPUtils.ip4List();
+        System.out.println("list = " + list);
+        if (StringUtils.isNotBlank(userAgentStr)) {
+            eu.bitwalker.useragentutils.UserAgent agent = eu.bitwalker.useragentutils.UserAgent.parseUserAgentString(userAgentStr);
+            String browserName = agent.getBrowser().getName();
+            System.out.println("browserName = " + browserName);
+            String operatingSystem = agent.getOperatingSystem().getName();
+            System.out.println("operatingSystem = " + operatingSystem);
+            userAgentStr = StringUtils.substring(userAgentStr, 0, 255);
+            System.out.println("userAgentStr = " + userAgentStr);
+        }
+        return "成功";
+    }
+
+    @GetMapping("/getClientIpAddress")
+    public String getClientIpAddress() {
+
+        String ip2 = clientIpUtils.getClientIP();
+        String ipAddress1 = clientIpUtils.getIPAddress1();
+        String ipAddress2 = clientIpUtils.getIPAddress2();
+        String ipAddress3 = clientIpUtils.getIPAddress3();
+        HttpServletRequest request = ((ServletRequestAttributes) Objects.requireNonNull(RequestContextHolder.getRequestAttributes())).getRequest();
+        String ipAddress4 = IPUtils.getIpAddress(request);
+        String ipAddress5 = IPUtils.getIp(request);
+        return ip2;
+    }
+
+
 
 
     public static void main(String[] args) {
