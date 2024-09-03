@@ -10,7 +10,7 @@ import lombok.Data;
  */
 @Data
 @Builder(toBuilder = true)
-public class User1DTO {
+public class User1DTO extends SearchDTO {
 
     private String id;
 
