@@ -11,8 +11,11 @@ import com.alibaba.excel.write.style.column.AbstractColumnWidthStyleStrategy;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.google.common.collect.Lists;
+import com.hao.dto.UserExcelDTO;
+import com.hao.entity.User;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.ss.usermodel.Cell;
@@ -101,6 +104,75 @@ public class ExcelController {
                 .doWrite(initList);
 //        excelWriterBuilder.sheet("模板").doWrite(initList);
         log.info("导出excel模板完成");
+    }
+
+    @SneakyThrows
+    @PostMapping("/exportData")
+    @ApiOperation("导出excel清单数据")
+    public void exportData(HttpServletResponse response, List<User> userList) {
+        log.info("==========================导出清单数据开始==========================");
+
+        List<UserExcelDTO> dtoList = new ArrayList<>();
+        int size = userList.size();
+        for (int i = 0; i < size; i++) {
+            User lcpSceneEntity = userList.get(i);
+            UserExcelDTO userExcelDTO = new UserExcelDTO();
+            userExcelDTO.setId(String.valueOf(i + 1));
+            userExcelDTO.setUsername(lcpSceneEntity.getName());
+            userExcelDTO.setEmail(lcpSceneEntity.getEmail());
+            dtoList.add(userExcelDTO);
+        }
+        response.setContentType("application/vnd.ms-excel");
+        response.setCharacterEncoding("utf-8");
+        // 不设置前端无法从header获取文件名
+        response.setHeader("Access-Control-Expose-Headers", "filename");
+        // 防止中文乱码
+        String fileName = URLEncoder.encode("用户清单.xlsx", "utf-8").replaceAll("\\+", "%20");
+        response.setHeader("Content-Disposition", "attachment;filename=" + fileName);
+        response.setHeader("filename", fileName);
+        // 创建excel工作簿
+        EasyExcel.write(response.getOutputStream(), UserExcelDTO.class).sheet("用户清单").doWrite(dtoList);
+
+        log.info("==========================导出清单数据完成，共计【{}】条==========================", size);
+
+        // 前端代码
+   /*     exportData() {
+            this.exportDataLoading = true
+            axios({
+                    method: 'post',
+                    url: `http://192.168.xxx.xxx:8888/demo/exportData`,
+            headers: {
+                // 传入登录token鉴权
+                token: $gc.getToken(),
+                        'Content-Type': 'application/json'
+            },
+            // 通过body传参，后端通过  @RequestBody 注解获取参数
+            data: this.tableData,
+                    withCredentials: false,
+                    responseType: 'arraybuffer'
+      }).then(res => {
+        const fileUrl = window.URL.createObjectURL(new Blob([res.data]))
+            // 创建超链接
+        const fileLink = document.createElement('a')
+            fileLink.href = fileUrl
+            // 设置下载文件名
+            let filename = res.headers['filename']
+            // let filename = '表格.xls'
+            // 解决中文乱码
+            filename = window.decodeURI(filename)
+            fileLink.setAttribute('download', filename)
+            document.body.appendChild(fileLink)
+            // 模拟人工点击下载超链接
+            fileLink.click()
+            // 释放资源
+            document.body.removeChild(fileLink)
+            window.URL.revokeObjectURL(fileUrl)
+            this.exportOwnerLoading = false
+      }).catch((e) => {
+                    console.log(e)
+                    this.exportOwnerLoading = false
+            })
+        }*/
     }
 
     /**
