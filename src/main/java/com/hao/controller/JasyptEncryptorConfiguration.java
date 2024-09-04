@@ -78,13 +78,15 @@ public class JasyptEncryptorConfiguration {
         System.out.println(encryptor.decrypt("CDFdd6W7zzd0j/5/KVxtY1433ifWiBdL"));
 
         // jasypt.encryptor.password 真实密码
+        System.out.println();
         String pwd = "123";
+        System.out.println("真实密码pwd = " + pwd);
         StandardPBEStringEncryptor stringEncryptor = new StandardPBEStringEncryptor();
         stringEncryptor.setPassword(password2);
         stringEncryptor.setAlgorithm("PBEWithMD5AndDES");
         stringEncryptor.setIvGenerator(new org.jasypt.iv.NoIvGenerator());
         stringEncryptor.setStringOutputType("base64");
-        System.out.println("stringEncryptor.encrypt(pwd) = " + stringEncryptor.encrypt(pwd));
+        System.out.println("加密后pwd = " + stringEncryptor.encrypt(pwd));
 
     }
 
