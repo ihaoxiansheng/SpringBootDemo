@@ -15,11 +15,13 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.jasypt.encryption.StringEncryptor;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.MediaType;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.view.RedirectView;
@@ -64,9 +66,6 @@ public class TestController {
 
     @Resource
     private ClientIpUtils clientIpUtils;
-
-    @Resource(name = "jasyptStringEncryptor")
-    public StringEncryptor stringEncryptor;
 
     @GetMapping("/hello")
     @ApiOperation("hello")
@@ -211,23 +210,6 @@ public class TestController {
         String ipAddress5 = IPUtils.getIp(request);
         return ip2;
     }
-
-    public static final String DECRYPT_FLAG = "#*zuMfH4atFtH02GvBAwJN*#";
-
-    @GetMapping("encrypt")
-    public String encrypt(String str) {
-        return stringEncryptor.encrypt(str);
-    }
-
-    @GetMapping("decrypt")
-    public String decrypt(String str, @RequestHeader("pwd") String pwd) {
-        if (Objects.equals(DECRYPT_FLAG, pwd)) {
-            return stringEncryptor.decrypt(str);
-        } else {
-            return "无权限";
-        }
-    }
-
 
     public static void main(String[] args) {
         int a = 1;

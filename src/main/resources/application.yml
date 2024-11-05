@@ -75,4 +75,5 @@ rocketmq:
 jasypt:
   encryptor:
     # 真实密码：123
+#    password: 123
     password: f9S88g6jM3nT4m8pX7iDdg==
