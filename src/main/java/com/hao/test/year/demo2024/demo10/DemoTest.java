@@ -93,15 +93,36 @@ public class DemoTest {
         // List<String> sceneClassifyIdParamList = Arrays.asList(sceneClassifyId.split(","));
         // System.out.println("sceneClassifyIdParamList = " + sceneClassifyIdParamList);
 
+        List<Set<Map<String, Object>>> slaveTableNameCache = new ArrayList<>();
         Set<Map<String, Object>> set = new HashSet<>();
         Map<String, Object> hashMap = new HashMap<>();
-        hashMap.put("a", 1);
+        hashMap.put("Name", "1");
+        hashMap.put("Comment", "2");
+        set.add(hashMap);
+        slaveTableNameCache.add(set);
 
         for (int j = 0; j < 3; j++) {
-            set.add(hashMap);
+            Map<String, Object> hashMap1 = new HashMap<>();
+            hashMap1.put("Name", "1");
+            hashMap1.put("Comment", String.valueOf(j));
+            slaveTableNameCache.get(0).add(hashMap1);
         }
         System.out.println("set = " + set);
+        Map<String, String> tableNameAndCommentMap = slaveTableNameCache.stream()
+                .flatMap(Set::stream)
+                .filter(map -> map.containsKey("Name") && map.containsKey("Comment"))
+                .distinct()
+                .collect(Collectors.toMap(
+                        map -> (String) map.get("Name"),
+                        map -> map.getOrDefault("Comment", "").toString(), (existing, replacement) -> existing));
+        System.out.println("tableNameAndCommentMap = " + tableNameAndCommentMap);
 
+
+        List<String> sceneCodeList = Arrays.asList("111333", "12333");
+        String[] strings = new String[0];
+        System.out.println("strings = " + Arrays.toString(strings));
+        String[] codes = sceneCodeList.toArray(new String[0]);
+        System.out.println("codes = " + Arrays.toString(codes));
 
     }
 }
