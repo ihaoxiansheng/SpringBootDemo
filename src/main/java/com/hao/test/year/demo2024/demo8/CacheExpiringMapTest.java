@@ -25,7 +25,7 @@ public class CacheExpiringMapTest {
             .maxSize(1000)
             // 过期时间，可设置时、分、秒
             .expiration(24, TimeUnit.HOURS)
-            // 过期策略，CREATED表示每进行一次访问，过期时间就会自动清零，重新计算，ACCESSED表示在过期时间内重新put值的话，过期时间会清理，重新计算
+            // 过期策略，CREATED表示基于创建时间过期，ACCESSED表示在过期时间内重新put值的话，过期时间会清理，重新计算
             .expirationPolicy(ExpirationPolicy.CREATED)
             .variableExpiration().build();
 
